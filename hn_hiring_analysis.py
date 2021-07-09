@@ -16,7 +16,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 chromedriver_location = "/Users/belliott/Downloads/chromedriver"
-start_date = "2000-01-01"
+start_date = "2013-01-01"
 end_date = "2021-07-01"
 search_keywords = [
     "data engineer",
