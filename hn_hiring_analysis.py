@@ -436,6 +436,49 @@ ORDER BY
 
 sqldf(sql).plot("start_date", "sum_cnt", title=title)
 
+# %%
+title = "Remote keyword / num posts"
+sql = """
+WITH post_cnt AS (
+SELECT
+    start_date AS start_date,
+    SUM(cnt)   AS sum_cnt
+FROM
+    df
+WHERE
+    category = 'company_names'
+GROUP BY
+    start_date
+ORDER BY
+    start_date ASC
+),
+remote_cnt AS (
+SELECT
+    start_date, SUM(cnt_total) AS sum_cnt_total, SUM(cnt_unique) AS sum_cnt_unique
+FROM
+    df
+WHERE
+    category = 'search_results'
+AND value = 'remote'
+AND start_date >= '2013-01-01'
+GROUP BY start_date
+ORDER BY start_date
+)
+SELECT
+    post_cnt.start_date,
+    ROUND(remote_cnt.sum_cnt_total,2) / ROUND(post_cnt.sum_cnt,2) AS remote_frequency
+FROM
+    post_cnt
+INNER JOIN
+    remote_cnt
+ON
+    remote_cnt.start_date = post_cnt.start_date
+ORDER BY
+    post_cnt.start_date
+
+"""
+
+sqldf(sql).plot("start_date", "remote_frequency", title=title)
 
 # %%
 title = "Frequency of Data Engineer over time"
