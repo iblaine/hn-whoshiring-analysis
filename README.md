@@ -5,11 +5,12 @@ Related [blog post](https://iblaine.github.io/hackernews-whos-hiring-analysis/)
 
 ### Quick steps on how to use
 1. git clone git@github.com:iblaine/hn-whoshiring-analysis.git
-2. python -m venv env
-3. source env/bin/activate
-4. pip install -r requirements.txt
-5. code hn_hiring_analysis.py
-6. click "Run Cell" as needed
+2. cd hn-whoshiring-analysis
+3. python -m venv env
+4. source env/bin/activate
+5. pip install -r requirements.txt
+6. code hn_hiring_analysis.py
+7. click "Run Cell"
 
 ### What does this notebook do?
 * Load [HackerNews Who is hiring](https://news.ycombinator.com/item?id=27699704) posts from Jan 2013 to July 2021
